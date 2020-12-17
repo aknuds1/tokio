@@ -1,6 +1,6 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1606506922047,
-  "repoUrl": "https://github.com/tokio-rs/tokio",
+  "lastUpdate": 1608224099300,
+  "repoUrl": "https://github.com/aknuds1/tokio",
   "entries": {
     "sync_rwlock": [
       {
@@ -1633,6 +1633,54 @@ window.BENCHMARK_DATA = {
             "name": "yield_many",
             "value": 20082488,
             "range": "± 2735348",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "luciofranco14@gmail.com",
+            "name": "Lucio Franco",
+            "username": "LucioFranco"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "59e4b35f49e6a95a961fd9003db58191de97d3a0",
+          "message": "stream: Fix a few doc issues (#3285)",
+          "timestamp": "2020-12-17T10:35:49-05:00",
+          "tree_id": "757b133c0eac5b1c26d2ba870d0f4b5c198d7505",
+          "url": "https://github.com/aknuds1/tokio/commit/59e4b35f49e6a95a961fd9003db58191de97d3a0"
+        },
+        "date": 1608224096977,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "chained_spawn",
+            "value": 190720,
+            "range": "± 40734",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ping_pong",
+            "value": 717497,
+            "range": "± 79196",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "spawn_many",
+            "value": 4801758,
+            "range": "± 1001964",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "yield_many",
+            "value": 20131212,
+            "range": "± 2346935",
             "unit": "ns/iter"
           }
         ]
