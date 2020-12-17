@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1608224099300,
+  "lastUpdate": 1608224106053,
   "repoUrl": "https://github.com/aknuds1/tokio",
   "entries": {
     "sync_rwlock": [
@@ -2547,6 +2547,60 @@ window.BENCHMARK_DATA = {
             "name": "uncontended_concurrent_single",
             "value": 905,
             "range": "± 6",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "luciofranco14@gmail.com",
+            "name": "Lucio Franco",
+            "username": "LucioFranco"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "59e4b35f49e6a95a961fd9003db58191de97d3a0",
+          "message": "stream: Fix a few doc issues (#3285)",
+          "timestamp": "2020-12-17T10:35:49-05:00",
+          "tree_id": "757b133c0eac5b1c26d2ba870d0f4b5c198d7505",
+          "url": "https://github.com/aknuds1/tokio/commit/59e4b35f49e6a95a961fd9003db58191de97d3a0"
+        },
+        "date": 1608224103619,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "contended_concurrent_multi",
+            "value": 14197,
+            "range": "± 4335",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "contended_concurrent_single",
+            "value": 907,
+            "range": "± 252",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "uncontended",
+            "value": 520,
+            "range": "± 104",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "uncontended_concurrent_multi",
+            "value": 15116,
+            "range": "± 4851",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "uncontended_concurrent_single",
+            "value": 944,
+            "range": "± 253",
             "unit": "ns/iter"
           }
         ]
