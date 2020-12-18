@@ -199,6 +199,12 @@ pub use self::async_write::AsyncWrite;
 mod read_buf;
 pub use self::read_buf::ReadBuf;
 
+mod chain;
+mod read_to_end;
+cfg_process! {
+    pub(crate) use read_to_end::read_to_end;
+}
+
 // Re-export some types from `std::io` so that users don't have to deal
 // with conflicts when `use`ing `tokio::io` and `std::io`.
 #[doc(no_inline)]

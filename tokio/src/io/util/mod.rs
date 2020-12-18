@@ -22,8 +22,6 @@ cfg_io_util! {
     mod buf_writer;
     pub use buf_writer::BufWriter;
 
-    mod chain;
-
     mod copy;
     pub use copy::copy;
 

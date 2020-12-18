@@ -1,4 +1,4 @@
-use crate::io::{AsyncBufRead, AsyncRead, ReadBuf};
+use super::{AsyncBufRead, AsyncRead, ReadBuf};
 
 use pin_project_lite::pin_project;
 use std::fmt;
@@ -7,9 +7,9 @@ use std::pin::Pin;
 use std::task::{Context, Poll};
 
 pin_project! {
-    /// Stream for the [`chain`](super::AsyncReadExt::chain) method.
+    /// Stream for the [`chain`](super::AsyncRead::chain) method.
     #[must_use = "streams do nothing unless polled"]
-    #[cfg_attr(docsrs, doc(cfg(feature = "io-util")))]
+    #[cfg_attr(docsrs, doc())]
     pub struct Chain<T, U> {
         #[pin]
         first: T,

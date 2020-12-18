@@ -1,4 +1,3 @@
-use crate::io::util::chain::{chain, Chain};
 use crate::io::util::read::{read, Read};
 use crate::io::util::read_buf::{read_buf, ReadBuf};
 use crate::io::util::read_exact::{read_exact, ReadExact};
@@ -8,7 +7,6 @@ use crate::io::util::read_int::{
 use crate::io::util::read_int::{
     ReadU128, ReadU128Le, ReadU16, ReadU16Le, ReadU32, ReadU32Le, ReadU64, ReadU64Le, ReadU8,
 };
-use crate::io::util::read_to_end::{read_to_end, ReadToEnd};
 use crate::io::util::read_to_string::{read_to_string, ReadToString};
 use crate::io::util::take::{take, Take};
 use crate::io::AsyncRead;
@@ -62,43 +60,6 @@ cfg_io_util! {
     /// [`AsyncRead`]: AsyncRead
     /// [`prelude`]: crate::prelude
     pub trait AsyncReadExt: AsyncRead {
-        /// Creates a new `AsyncRead` instance that chains this stream with
-        /// `next`.
-        ///
-        /// The returned `AsyncRead` instance will first read all bytes from this object
-        /// until EOF is encountered. Afterwards the output is equivalent to the
-        /// output of `next`.
-        ///
-        /// # Examples
-        ///
-        /// [`File`][crate::fs::File]s implement `AsyncRead`:
-        ///
-        /// ```no_run
-        /// use tokio::fs::File;
-        /// use tokio::io::{self, AsyncReadExt};
-        ///
-        /// #[tokio::main]
-        /// async fn main() -> io::Result<()> {
-        ///     let f1 = File::open("foo.txt").await?;
-        ///     let f2 = File::open("bar.txt").await?;
-        ///
-        ///     let mut handle = f1.chain(f2);
-        ///     let mut buffer = String::new();
-        ///
-        ///     // read the value into a String. We could use any AsyncRead
-        ///     // method here, this is just one example.
-        ///     handle.read_to_string(&mut buffer).await?;
-        ///     Ok(())
-        /// }
-        /// ```
-        fn chain<R>(self, next: R) -> Chain<Self, R>
-        where
-            Self: Sized,
-            R: AsyncRead,
-        {
-            chain(self, next)
-        }
-
         /// Pulls some bytes from this source into the specified buffer,
         /// returning how many bytes were read.
         ///
@@ -974,58 +935,6 @@ cfg_io_util! {
             /// }
             /// ```
             fn read_i128_le(&mut self) -> ReadI128Le;
-        }
-
-        /// Reads all bytes until EOF in this source, placing them into `buf`.
-        ///
-        /// Equivalent to:
-        ///
-        /// ```ignore
-        /// async fn read_to_end(&mut self, buf: &mut Vec<u8>) -> io::Result<usize>;
-        /// ```
-        ///
-        /// All bytes read from this source will be appended to the specified
-        /// buffer `buf`. This function will continuously call [`read()`] to
-        /// append more data to `buf` until [`read()`] returns `Ok(0)`.
-        ///
-        /// If successful, the total number of bytes read is returned.
-        ///
-        /// [`read()`]: AsyncReadExt::read
-        ///
-        /// # Errors
-        ///
-        /// If a read error is encountered then the `read_to_end` operation
-        /// immediately completes. Any bytes which have already been read will
-        /// be appended to `buf`.
-        ///
-        /// # Examples
-        ///
-        /// [`File`][crate::fs::File]s implement `Read`:
-        ///
-        /// ```no_run
-        /// use tokio::io::{self, AsyncReadExt};
-        /// use tokio::fs::File;
-        ///
-        /// #[tokio::main]
-        /// async fn main() -> io::Result<()> {
-        ///     let mut f = File::open("foo.txt").await?;
-        ///     let mut buffer = Vec::new();
-        ///
-        ///     // read the whole file
-        ///     f.read_to_end(&mut buffer).await?;
-        ///     Ok(())
-        /// }
-        /// ```
-        ///
-        /// (See also the [`tokio::fs::read`] convenience function for reading from a
-        /// file.)
-        ///
-        /// [`tokio::fs::read`]: fn@crate::fs::read
-        fn read_to_end<'a>(&'a mut self, buf: &'a mut Vec<u8>) -> ReadToEnd<'a, Self>
-        where
-            Self: Unpin,
-        {
-            read_to_end(self, buf)
         }
 
         /// Reads all bytes until EOF in this source, appending them to `buf`.
