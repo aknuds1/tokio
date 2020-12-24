@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1608224124287,
+  "lastUpdate": 1608811481181,
   "repoUrl": "https://github.com/aknuds1/tokio",
   "entries": {
     "sync_rwlock": [
@@ -1735,6 +1735,54 @@ window.BENCHMARK_DATA = {
             "name": "yield_many",
             "value": 20131212,
             "range": "± 2346935",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "me@carllerche.com",
+            "name": "Carl Lerche",
+            "username": "carllerche"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a66017f04985f5e7b7cb981e370e78a7291a5537",
+          "message": "chore: prepare Tokio 1.0 release (#3319)",
+          "timestamp": "2020-12-23T09:26:14-08:00",
+          "tree_id": "a874909774c2fcbed6073262e4b2b789fbcb1b60",
+          "url": "https://github.com/aknuds1/tokio/commit/a66017f04985f5e7b7cb981e370e78a7291a5537"
+        },
+        "date": 1608811480349,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "chained_spawn",
+            "value": 181652,
+            "range": "± 27823",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ping_pong",
+            "value": 695449,
+            "range": "± 127772",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "spawn_many",
+            "value": 4777140,
+            "range": "± 862918",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "yield_many",
+            "value": 18255454,
+            "range": "± 3127082",
             "unit": "ns/iter"
           }
         ]
